@@ -1,0 +1,28 @@
+const { DataTypes } = require('sequelize');
+const sequelize = require('../config/database');
+const Category = require('./Category');
+const Subcategory = require('./Subcategory');
+
+const Car = sequelize.define('Car', {
+    car_id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
+    make: { type: DataTypes.STRING, allowNull: false },
+    model: { type: DataTypes.STRING, allowNull: false },
+    year: { type: DataTypes.INTEGER, allowNull: false },
+    price: { type: DataTypes.DECIMAL(12, 2), allowNull: false },
+    mileage: { type: DataTypes.INTEGER, allowNull: false },
+    fuel_type: { type: DataTypes.ENUM('Petrol', 'Diesel', 'Electric', 'Hybrid'), allowNull: false },
+    transmission: { type: DataTypes.ENUM('Manual', 'Automatic'), allowNull: false },
+    color: { type: DataTypes.STRING, allowNull: false },
+    engine_capacity: { type: DataTypes.STRING, allowNull: false },
+    seating_capacity: { type: DataTypes.INTEGER, allowNull: false },
+    description: { type: DataTypes.TEXT },
+    category_id: { type: DataTypes.INTEGER, references: { model: Category, key: 'category_id' } },
+    subcategory_id: { type: DataTypes.INTEGER, references: { model: Subcategory, key: 'subcategory_id' } }
+}, { timestamps: true });
+
+Category.hasMany(Car, { foreignKey: 'category_id', onDelete: 'SET NULL' });
+Subcategory.hasMany(Car, { foreignKey: 'subcategory_id', onDelete: 'SET NULL' });
+Car.belongsTo(Category, { foreignKey: 'category_id' });
+Car.belongsTo(Subcategory, { foreignKey: 'subcategory_id' });
+
+module.exports = Car;
