@@ -5,6 +5,7 @@ const { sequelize, connectDB } = require("./config/db.js");
 const app = express();
 const Userrouter = require("./routes/user.route.js")
 const Departmentrouter = require('./routes/department.route.js');
+const Carrouter=require('./routes/car.routes.js')
 app.use(cors({
   origin: process.env.CORS_ORIGIN,
   Credential: true
@@ -12,6 +13,7 @@ app.use(cors({
 app.use(express.json());
 app.use("/user", Userrouter);
 app.use('/department', Departmentrouter);
+app.use('/car',Carrouter);
 const port = process.env.PORT || 5000
 
 connectDB().then(() => {
