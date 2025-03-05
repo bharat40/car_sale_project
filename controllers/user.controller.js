@@ -5,17 +5,16 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/user.model");
 const router = express.Router();
 const JWT_SECRET = process.env.JWT_SECRET;
-console.log(JWT_SECRET);
 const signup= async (req, res) => {
   try {
-    const { name, email, password, role } = req.body;
+    const { username, email, password, role } = req.body;
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.status(400).json({ message: "User already exists" });
     }
     const saltRounds = 10;
     const hashedPassword = await bcrypt.hash(password, saltRounds);
-    const newUser = new User({ name, email, password: hashedPassword, role });
+    const newUser = new User({ username, email, password: hashedPassword, role });
     await newUser.save();
     const token = jwt.sign({ userId: newUser._id, role: newUser.role }, JWT_SECRET, {
       expiresIn: "1h"
@@ -24,7 +23,7 @@ const signup= async (req, res) => {
       message: "User created successfully",
       user: {
         _id: newUser._id,
-        name: newUser.name,
+        username: newUser.username,
         email: newUser.email,
         role: newUser.role
       },
