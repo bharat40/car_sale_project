@@ -1,6 +1,6 @@
 const { DataTypes } = require('sequelize');
-const sequelize = require('../config/database');
-const Car = require('./Car');
+const {sequelize} = require('../config/db');
+const Car = require('./car.model');
 
 const Review = sequelize.define('Review', {
     review_id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },

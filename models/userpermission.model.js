@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
-const sequelize = require('../config/database');
-const User = require('./user');
-const Permission = require('./permission');
+const {sequelize} = require('../config/db');
+const User = require('./user.model');
+const Permission = require('./permission.model');
 
 const UserPermission = sequelize.define('UserPermission', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },

@@ -1,9 +1,9 @@
 
 const { DataTypes } = require('sequelize');
-const sequelize = require('../config/database');
-const User = require('./user');
-const Department = require('./department');
-const Designation = require('./designation');
+const {sequelize} = require('../config/db');
+const User = require('./user.model');
+const Department = require('./department.model');
+const Designation = require('./designation.model');
 
 const Employee = sequelize.define('Employee', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },

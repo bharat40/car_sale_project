@@ -1,6 +1,6 @@
 const { DataTypes } = require('sequelize');
-const sequelize = require('../config/database');
-const Category = require('./Category');
+const {sequelize} = require('../config/db');
+const Category = require('./category.model');
 
 const Subcategory = sequelize.define('Subcategory', {
     subcategory_id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
