@@ -8,7 +8,7 @@ const JWT_SECRET = process.env.JWT_SECRET;
 const signup= async (req, res) => {
   try {
     const { username, email, password, role } = req.body;
-    const existingUser = await User.findOne({ email });
+    const existingUser = await User.findOne({ where: { email } });
     if (existingUser) {
       return res.status(400).json({ message: "User already exists" });
     }
@@ -36,7 +36,7 @@ const signup= async (req, res) => {
 const login= async (req, res) => {
   try {
     const { email, password } = req.body;
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ where: { email } });
     if (!user) {
       return res.status(400).json({ message: "Invalid credentials" });
     }
