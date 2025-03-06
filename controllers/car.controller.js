@@ -1,4 +1,4 @@
-const Car = require('../models/Car');
+const Car = require('../models/car.model.js');
 
 // Get all cars
 exports.getAllCars = async (req, res) => {
