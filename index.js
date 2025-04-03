@@ -7,6 +7,7 @@ const Userrouter = require("./routes/user.route.js")
 const Departmentrouter = require('./routes/department.route.js');
 const Carrouter = require('./routes/car.routes.js')
 const EmployeeRouter = require('./routes/employee.routes.js');
+const InventoryRouter = require('./routes/inventory.routes.js');
 app.use(cors({
   origin: process.env.CORS_ORIGIN,
   Credential: true
@@ -16,6 +17,7 @@ app.use("/user", Userrouter);
 app.use('/department', Departmentrouter);
 app.use('/car', Carrouter);
 app.use('/employee', EmployeeRouter)
+app.use('/inventory', InventoryRouter);
 const port = process.env.PORT || 5000
 
 connectDB().then(() => {
