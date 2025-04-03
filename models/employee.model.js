@@ -1,17 +1,17 @@
 
 const { DataTypes } = require('sequelize');
-const sequelize = require('../config/database');
-const User = require('./user');
-const Department = require('./department');
-const Designation = require('./designation');
+const { sequelize } = require('../config/db.js');
+const User = require('./user.model.js');
+const Department = require('./department.model.js');
+const Designation = require('./designation.model.js');
 
 const Employee = sequelize.define('Employee', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     userId: { type: DataTypes.INTEGER, unique: true, allowNull: false, references: { model: User, key: 'id' } },
     departmentId: { type: DataTypes.INTEGER, references: { model: Department, key: 'id' } },
-    // designationId: { type: DataTypes.INTEGER, references: { model: Designation, key: 'id' } },
+    designationId: { type: DataTypes.INTEGER, references: { model: Designation, key: 'id' } },
     dateOfJoining: { type: DataTypes.DATE },
-    salary: { type: DataTypes.DECIMAL(10,2) }
+    salary: { type: DataTypes.DECIMAL(10, 2) }
 }, {
     timestamps: true
 });

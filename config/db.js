@@ -12,8 +12,7 @@ const connectDB = async () => {
         console.log("Database connected...");
 
 
-        await sequelize.sync({ alter: true });
-        console.log("User table checked/updated");
+        await sequelize.sync();
     } catch (err) {
         console.error("Error connecting to database:", err);
         process.exit(1);

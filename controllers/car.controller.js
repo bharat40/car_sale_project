@@ -1,4 +1,4 @@
-const Car = require('../models/Car');
+const Car = require('../models/car.model.js');
 
 // Get all cars
 exports.getAllCars = async (req, res) => {
@@ -7,6 +7,17 @@ exports.getAllCars = async (req, res) => {
         res.json(cars);
     } catch (error) {
         res.status(500).json({ error: 'Error fetching cars' });
+    }
+};
+
+
+// Add new car
+exports.createCar = async (req, res) => {
+    try {
+        const car = await Car.create(req.body);
+        res.status(201).json(car);
+    } catch (error) {
+        res.status(500).json({ error: 'Error creating car' });
     }
 };
 
@@ -21,15 +32,7 @@ exports.getCarById = async (req, res) => {
     }
 };
 
-// Add new car
-exports.createCar = async (req, res) => {
-    try {
-        const car = await Car.create(req.body);
-        res.status(201).json(car);
-    } catch (error) {
-        res.status(500).json({ error: 'Error creating car' });
-    }
-};
+
 
 // Update car
 exports.updateCar = async (req, res) => {
