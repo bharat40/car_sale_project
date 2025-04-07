@@ -1,23 +1,12 @@
-<<<<<<< HEAD
 const Employee = require('../models/employee.model');
 const User = require('../models/user.model');
 const Department = require('../models/department.model');
 const Designation = require('../models/designation.model');
-=======
-const Employee = require('../models/employee.model.js');
-const User = require('../models/user.model.js');
-const Department = require('../models/department.model.js');
-const Designation = require('../models/designation.model.js');
->>>>>>> 6fe016359e9679b79c44a3a234f8cf313911303b
 
 // Create a new employee
 exports.createEmployee = async (req, res) => {
     try {
-<<<<<<< HEAD
         const { userId, departmentId, dateOfJoining, salary } = req.body;
-=======
-        const { userId, dateOfJoining, salary } = req.body;
->>>>>>> 6fe016359e9679b79c44a3a234f8cf313911303b
 
         if (!userId) {
             return res.status(400).json({ message: "User ID is required" });
@@ -25,10 +14,7 @@ exports.createEmployee = async (req, res) => {
 
         const newEmployee = await Employee.create({
             userId,
-<<<<<<< HEAD
             departmentId,
-=======
->>>>>>> 6fe016359e9679b79c44a3a234f8cf313911303b
             dateOfJoining,
             salary
         });
@@ -43,14 +29,9 @@ exports.createEmployee = async (req, res) => {
 // Get all employees
 exports.getAllEmployees = async (req, res) => {
     try {
-<<<<<<< HEAD
         const employees = await Employee.findAll({
             include: [{ model: User }, { model: Department }, { model: Designation }]
         });
-=======
-        const employees = await Employee.find(
-        );
->>>>>>> 6fe016359e9679b79c44a3a234f8cf313911303b
         res.status(200).json(employees);
     } catch (error) {
         console.error("Error fetching employees:", error);
@@ -112,8 +93,4 @@ exports.deleteEmployee = async (req, res) => {
         console.error("Error deleting employee:", error);
         res.status(500).json({ message: "Internal Server Error" });
     }
-<<<<<<< HEAD
 };
-=======
-};
->>>>>>> 6fe016359e9679b79c44a3a234f8cf313911303b
