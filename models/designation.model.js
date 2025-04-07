@@ -1,6 +1,6 @@
 const { DataTypes } = require('sequelize');
-const {sequelize} = require('../config/db');
-const Department = require('./department.model');
+const {sequelize} = require('../config/db.js');
+const Department = require('./department.model.js');
 
 const Designation = sequelize.define('Designation', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },

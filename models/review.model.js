@@ -1,6 +1,11 @@
 const { DataTypes } = require('sequelize');
+<<<<<<< HEAD
 const {sequelize} = require('../config/db');
 const Car = require('./car.model');
+=======
+const { sequelize } = require('../config/db.js');
+const Car = require('./car.model.js');
+>>>>>>> 6fe016359e9679b79c44a3a234f8cf313911303b
 
 const Review = sequelize.define('Review', {
     review_id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
