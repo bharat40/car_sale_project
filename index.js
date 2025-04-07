@@ -9,7 +9,7 @@ const Carrouter = require('./routes/car.routes.js')
 const EmployeeRouter = require('./routes/employee.routes.js');
 const InventoryRouter = require('./routes/inventory.routes.js');
 app.use(cors({
-  origin: process.env.CORS_ORIGIN,
+  origin: "*",
   Credential: true
 }))
 app.use(express.json());
