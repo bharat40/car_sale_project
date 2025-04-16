@@ -1,12 +1,12 @@
-const Employee = require('../models/employee.model.js');
-const User = require('../models/user.model.js');
-const Department = require('../models/department.model.js');
-const Designation = require('../models/designation.model.js');
+const Employee = require('../models/employee.model');
+const User = require('../models/user.model');
+const Department = require('../models/department.model');
+const Designation = require('../models/designation.model');
 
 // Create a new employee
 exports.createEmployee = async (req, res) => {
     try {
-        const { userId, dateOfJoining, salary } = req.body;
+        const { userId, departmentId, dateOfJoining, salary } = req.body;
 
         if (!userId) {
             return res.status(400).json({ message: "User ID is required" });
@@ -14,6 +14,7 @@ exports.createEmployee = async (req, res) => {
 
         const newEmployee = await Employee.create({
             userId,
+            departmentId,
             dateOfJoining,
             salary
         });
@@ -28,8 +29,9 @@ exports.createEmployee = async (req, res) => {
 // Get all employees
 exports.getAllEmployees = async (req, res) => {
     try {
-        const employees = await Employee.find(
-        );
+        const employees = await Employee.findAll({
+            include: [{ model: User }, { model: Department }, { model: Designation }]
+        });
         res.status(200).json(employees);
     } catch (error) {
         console.error("Error fetching employees:", error);

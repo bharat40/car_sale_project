@@ -1,14 +1,37 @@
 const { DataTypes } = require('sequelize');
-const {sequelize} = require('../config/db.js');
-const Car = require('./car.model.js');
+const { sequelize } = require('../config/db');
+const Car = require('./car.model');
 
 const Inventory = sequelize.define('Inventory', {
-    inventory_id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
-    car_id: { type: DataTypes.INTEGER, references: { model: Car, key: 'car_id' }, allowNull: false },
-    quantity_available: { type: DataTypes.INTEGER, defaultValue: 1, validate: { min: 0 } },
-    last_updated: { type: DataTypes.DATE, defaultValue: DataTypes.NOW }
-}, { timestamps: false });
+    inventory_id: { 
+        type: DataTypes.INTEGER, 
+        autoIncrement: true, 
+        primaryKey: true 
+    },
+    car_id: { 
+        type: DataTypes.INTEGER, 
+        references: { 
+            model: Car, 
+            key: 'car_id' 
+        }, 
+        allowNull: false 
+    },
+    quantity_available: { 
+        type: DataTypes.INTEGER, 
+        defaultValue: 1, 
+        validate: { 
+            min: 0 
+        } 
+    },
+    last_updated: { 
+        type: DataTypes.DATE, 
+        defaultValue: DataTypes.NOW 
+    }
+}, { 
+    timestamps: false 
+});
 
+// Define relationships
 Car.hasOne(Inventory, { foreignKey: 'car_id', onDelete: 'CASCADE' });
 Inventory.belongsTo(Car, { foreignKey: 'car_id' });
 
