@@ -1,3 +1,4 @@
+
 import {BrowserRouter,Routes,Route} from"react-router-dom";
 import SignupPage from "./pages/signup.js";
 import LoginPage from "./pages/login.js";
@@ -6,7 +7,6 @@ import UserManagement from "./pages/UserManagement";
 import CarManagement from "./pages/CarManagement";
 function App() {
   return (
-    <div className="App">
      <BrowserRouter>
      <Routes>
       <Route path='/' element={<Home />}/>
@@ -16,8 +16,6 @@ function App() {
         <Route path="/admin/cars" element={<CarManagement />} />
      </Routes>
      </BrowserRouter>
-    </div>
-  );
-}
+)
 
 export default App;
