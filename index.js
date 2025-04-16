@@ -22,6 +22,7 @@ app.use(express.json());
 
 app.use("/user", Userrouter);
 app.use("/employee", EmployeeRouter);
+app.use("/car", Carrouter);
 
 const port = process.env.PORT || 5000;
 
