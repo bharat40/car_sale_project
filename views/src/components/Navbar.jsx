@@ -48,7 +48,7 @@ const Navbar = () => {
           </Link>
 
           <button className=" hidden lg:flex border-2 border-primary text-lg px-4 rounded-md hover:bg-primary transition duration-200 ease-linear">
-            Sign In
+            <Link to='/signup'>Sign In</Link>
           </button>
         </div>
 
